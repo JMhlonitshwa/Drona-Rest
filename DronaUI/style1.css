@@ -1,0 +1,130 @@
+body{
+	margin:0px;
+	padding:0px;
+	font-family: Georgia;
+}
+
+.header{
+width:100%;
+height:100px;
+margin:auto;
+
+
+}
+.headerData{
+height:100px;
+width:960px;
+margin:auto;
+}
+.headerData h1{
+	color:#00001F;	
+	padding:0px;	
+	border:0px;
+	line-height:100px;
+	height:100px;
+	font-size:40px;
+	}
+
+.menu{
+width:100%;
+height:40px;
+background-color:black;
+margin:0px
+}
+.menuData{
+color: white;
+margin:auto;
+width:960px;
+}
+.menuData ul{
+ margin:0px;
+padding:0px;
+border:0px;
+list-style-type:none;
+}
+.menuData ul li{
+ margin:0px;
+padding:0px;
+border:0px;
+line-height:40px;
+height:40px;
+float:left;
+padding-left:20px;
+padding-right:20px;
+font-size:18px;
+
+}
+.menuData ul li:hover{
+color:black;
+background-color:white;
+}
+.container{
+margin:auto;
+width:960px;
+padding-bottom:40px;
+}
+.container p{
+padding:2px;
+text-align:justify;
+text-indent: 50px;
+line-height: 200%;
+}
+
+.footer{
+bottom:0px;
+position:fixed;
+
+height:40px;
+width:100%;
+background-color:black;
+}
+
+
+.center{
+padding: 150pt;
+}
+
+.myButton {
+    -moz-box-shadow: inset 0px 1px 0px -50px #54a3f7;
+    -webkit-box-shadow: inset 0px 1px 0px -50px #54a3f7;
+    box-shadow: inset 0px 1px 0px -50px #54a3f7;
+    background-color: #007dc1;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #124d77;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Times New Roman;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 6px 76px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #154682;
+    width: 250pt;
+}
+.myButton:hover {
+    background-color: #0061a7;
+}
+
+.myButton:active {
+    position: relative;
+    top: 1px;
+}
+.text-label {
+    color:  #757575;
+    font-weight: bold;
+}
+.textBox {
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    width: 250pt;
+    height: 30pt;
+    font-family: Times New Roman;
+    font-size: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    text-shadow: 0px 0px 0px #154682;
+}
+.textBox:focus { border: 2px solid #007dc1; }

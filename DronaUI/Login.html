@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Login</title>
+<LINK REL="stylesheet" TITLE="Default Styles"
+    HREF="style1.css" MEDIA="screen">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+$(document).ready(function(){
+    $('.textBox').each(function(){
+         
+        this.value = $(this).attr('title');
+        $(this).addClass('text-label');
+     
+        $(this).focus(function(){
+            if(this.value == $(this).attr('title')) {
+                this.value = '';
+                $(this).removeClass('text-label');
+            }
+        });
+     
+        $(this).blur(function(){
+            if(this.value == '') {
+                this.value = $(this).attr('title');
+                $(this).addClass('text-label');
+            }
+        });
+    });
+});
+    
+</script>
+</head>
+<body style="background-color: #303030;">
+<center class="center" >
+        <table>
+		 <tr>
+                <td style="padding-bottom: 13px"><h1 style=" text-align:center;color:white">DRONA</h1></td>
+            </tr>
+            <tr>
+                <td style="padding-bottom: 13px"><input type="text" title="UserName"
+                    name="username" class="textBox" /></td>
+            </tr>
+            <tr>
+                <td style="padding-bottom: 18px"><input type="password" title="Password"
+                    name="password" class="textBox" /></td>
+            </tr>
+            <tr>
+                <td style="padding-bottom: 13px">
+                    <button class="myButton">LOGIN</button>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+</html>
