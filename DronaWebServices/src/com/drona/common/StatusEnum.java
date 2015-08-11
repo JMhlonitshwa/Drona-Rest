@@ -26,7 +26,7 @@ public enum StatusEnum {
         return status;
     }
 
-    public static StatusEnum getStatusEnum(int id) throws ApplicationException {
+    public static StatusEnum getStatusEnum(int id) {
         StatusEnum e = null;
         for (StatusEnum status : StatusEnum.values()) {
             if (status.getId() == id) {
@@ -40,4 +40,5 @@ public enum StatusEnum {
         return e;
     }
 
+    
 }

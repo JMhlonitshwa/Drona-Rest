@@ -7,7 +7,7 @@ package com.drona.common.exception;
  * 
  * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Mar 21, 2015
  */
-public class ApplicationException extends Exception {
+public class ApplicationException extends RuntimeException {
 
     public ApplicationException() {
         super();

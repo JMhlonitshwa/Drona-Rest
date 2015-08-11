@@ -19,8 +19,7 @@ import javax.persistence.TemporalType;
 @Embeddable
 public class AuditData {
 
-    @Column(name = "STATUS", length = 1, nullable = false)
-    private int status;
+    
 
     @Column(name = "CREATED_BY", nullable = false)
     private Long createdBy;
@@ -47,20 +46,11 @@ public class AuditData {
         super();
     }
 
-    private AuditData(int status, long createdBy, Calendar createdDate) {
+    private AuditData(long createdBy, Calendar createdDate) {
         super();
-        this.status = status;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
      }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public Long getCreatedBy() {
         return createdBy;

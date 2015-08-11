@@ -46,9 +46,12 @@ public class OrganisationImpl {
     @JoinColumn(name = "Parent_Org_Id")
     private OrganisationImpl parentOrganisation;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ADDRESS_ID_FK")
     private AddressImpl address;
+
+    @Column(name = "STATUS", length = 1, nullable = false)
+    private int status;
 
     @Embedded
     private AuditData auditData;
@@ -118,7 +121,13 @@ public class OrganisationImpl {
         this.parentOrganisation = parentOrganisation;
     }
 
+    public int getStatus() {
+        return status;
+    }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
 
     public AuditData getAuditData() {

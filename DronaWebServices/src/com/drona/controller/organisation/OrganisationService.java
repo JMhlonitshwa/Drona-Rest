@@ -15,7 +15,6 @@ import com.drona.common.GenericRepository;
 import com.drona.common.StatusEnum;
 import com.drona.common.StringUtil;
 import com.drona.common.UserRoleType;
-import com.drona.common.exception.ApplicationException;
 import com.drona.common.exception.EnityNotFoundException;
 import com.drona.common.json.UserJson;
 import com.drona.controller.UserService;
@@ -95,51 +94,37 @@ public class OrganisationService extends AbstractBaseService {
 
     }
 
-    public OrganisationJsonResponse getAllOrganization(long orgId, int orgTypeId, String status) {
+    public OrganisationJsonResponse getAllOrganization(Long orgId, Integer orgTypeId, String status) {
         OrganisationJsonResponse response = new OrganisationJsonResponse();
         OrganisationQueryImpl query = new OrganisationQueryImpl();
         query.filterByOrganisationType(orgTypeId);
-        query.filterByStatus(StatusEnum.valueOf(status.toUpperCase()).getId());
-        try {
-            OrganisationImpl organisation =
-                (OrganisationImpl) genericRepository.findSingle(query.getQuery());
-            response = new OrganisationJsonResponse();
-
-            if (organisation.getOrganisationType().equals(
-                OrganisationType.ORGANISATION.getOrganisationTypeId())) {
-                OrganisationQueryImpl instituteQuery = new OrganisationQueryImpl();
-                instituteQuery.filterByParentOrgId(organisation.getParentOrganisation().getOrgId());
-                List<OrganisationImpl> institutes =
-                    genericRepository.find(instituteQuery.getQuery());
-                response.setInstitutes(convertToJsonInstitute(institutes));
-
-            }
-
-        } catch (EnityNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        if (orgId != null) {
+            query.filterByOrgId(orgId);
         }
+        if (StringUtil.isEmptyOrBlank(status)) {
+            query.filterByStatus(StatusEnum.valueOf(status.toUpperCase()).getId());
+        }
+      if(OrganisationType.ORGANISATION.getOrganisationTypeId()==orgTypeId){
+            List<OrganisationImpl> organisations = genericRepository.find(query.getQuery());
+            response.setInstitutes(convertToJsonInstitute(organisations));
+      }
+            
 
+        
         return response;
     }
 
     private List<InstituteJson> convertToJsonInstitute(List<OrganisationImpl> institutes) {
         List<InstituteJson> institutesList = new ArrayList<InstituteJson>();
         for (OrganisationImpl institute : institutes) {
-            InstituteJson instituteJson;
-            try {
+            InstituteJson instituteJson;           
                 instituteJson =
                     new InstituteJson(institute.getOrgId(), institute.getOrgName(), StatusEnum
-                            .getStatusEnum(institute.getAuditData().getStatus()).getStatus(), null);
+                            .getStatusEnum(institute.getStatus()).getStatus(), null);
                 instituteJson.setAuditData(convertAuditDataTOJAuditJsonData(institute
                         .getAuditData()));
                 instituteJson.setAddress(convertAddressTOJAddressJsonData(institute.getAddress()));
-                institutesList.add(instituteJson);
-
-            } catch (ApplicationException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+                institutesList.add(instituteJson);     
 
         }
         return institutesList;

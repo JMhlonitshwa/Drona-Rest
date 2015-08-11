@@ -1,0 +1,59 @@
+<html>
+<head>
+<script type="text/javascript" src="jquery-1.9.1.js"></script>
+<!-- <script type="text/javascript" src="jquery.min.js"/></script> -->
+<script>
+$(document).ready(function(){
+	$("#getpersons").click(function(){
+		$.ajax({
+			url: 'person.view', 
+			type:'GET',		
+			success: function(data) {
+				$.each(data, function(key, value){
+					$("ul").append("<li class='fake-link' value='"+value.userName+"'>"+value.userName+"</li>");
+				});
+			}
+		});
+	});
+	
+ 	$("#list1").on('click', 'li', function () {
+ 	    //alert("hello"+$(this).attr('value'));
+ 	   var uname = $(this).attr('value'); 	    
+ 	   $.ajax({
+ 			url: uname+'/person.view', 
+ 			type:'GET',		
+ 			success: function(data) { 				
+ 				$("table").append("<tr><td>"+data.fName+" "+data.mName+" "+data.lName+"</td><td><a id='uName' href='#'>"+data.userName+"</a></td><td>"+data.password+"</td></tr>");
+ 				$("#table1").show();
+ 			},
+ 			error:	function(data){
+ 			//alert("error"+data);
+ 			
+ 			} 			
+ 			}); 	    
+ 	});
+});
+</script>
+<style>
+table, th, td {
+    border: 1px solid black;
+padding:5px;
+    border-collapse: collapse;
+}
+.fake-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>School Management System</title>
+</head>
+<body>
+	<input type="button" id="getpersons" value="Get All Users" />
+	<ul id="list1"></ul>
+	<table id="table1" border="1" style="border :1px solid;padding:0px;cell-spacing:0px" hidden="true" >
+	<tr><td>Name</td><td>UserName</td><td>Password</td></tr>
+	
+	</table>
+</body>
+</html>

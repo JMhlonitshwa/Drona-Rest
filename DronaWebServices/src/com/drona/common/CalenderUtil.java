@@ -3,7 +3,6 @@
 //============================================================
 package com.drona.common;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -15,14 +14,9 @@ public class CalenderUtil {
 
     public static String getDate(Calendar createdDate) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            return format.parse(createdDate.getTime().toString()).toString();
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return null;
-
+      
+            return format.format(createdDate.getTime());    
+      
 
     }
 

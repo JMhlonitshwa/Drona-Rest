@@ -55,6 +55,9 @@ public class AddressImpl {
     @Column(name = "FAX_NO", length = 50)
     private String faxNo;
     
+    @Column(name = "STATUS", length = 1, nullable = false)
+    private int status;
+    
     @Embedded
     private AuditData auditData;
 
@@ -64,6 +67,14 @@ public class AddressImpl {
 
     public void setAddressId(long addressId) {
         this.addressId = addressId;
+    }
+    
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getStreet1() {

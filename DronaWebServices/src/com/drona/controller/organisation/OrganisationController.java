@@ -39,16 +39,22 @@ public class OrganisationController extends BaseController {
     /**
      * @param orgId
      * @param orgType
-     * @param status 
+     * @param status
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody
-    OrganisationJsonResponse getCollection(@RequestParam(value = "orgId") long orgId,
-            @RequestParam(value = "orgType") int orgType,@RequestParam(value="status",defaultValue="Active") String status) {
-        
+    public @ResponseBody OrganisationJsonResponse getCollection(
+            @RequestParam(value = "orgId", required=false) Long orgId,
+            @RequestParam(value = "orgType", required = true) Integer orgType,
+            @RequestParam(value = "status", defaultValue = "Active") String status) {
+        validateRequest(orgType, orgId);
 
-        return organisationService.getAllOrganization(orgId,orgType,status);
+        return organisationService.getAllOrganization(orgId, orgType, status);
+
+    }
+
+    private void validateRequest(Integer orgType, Long orgId) {
+        // validate here
 
     }
 
@@ -59,19 +65,24 @@ public class OrganisationController extends BaseController {
      * @throws EnityNotFoundException
      */
     @RequestMapping(method = RequestMethod.POST)
-    public @ResponseBody
-    JsonResponse createEntity(@RequestBody OrganisationJsonRequest request, HttpSession session)
-            throws EnityNotFoundException {
+    public @ResponseBody JsonResponse createEntity(@RequestBody OrganisationJsonRequest request,
+            HttpSession session) {
         // TODO: request validation
         logger.info("Creating organisation with name:" + request.getOrgnaistaionName());
         long userId = Long.parseLong((String) session.getAttribute(Constants.USERID));
 
         // Create organization.
-        long orgId =
-            organisationService.createOrganizationAndUser(request.getOrgnaistaionName(),
-                request.getUsers(),userId, request.getParentOrgId());
+        long orgId = 0;
+        try {
+            orgId =
+                organisationService.createOrganizationAndUser(request.getOrgnaistaionName(),
+                    request.getUsers(), userId, request.getParentOrgId());
+        } catch (EnityNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-        return buildResponse(orgId,userId, request.getOrgnaistaionName());
+        return buildResponse(orgId, userId, request.getOrgnaistaionName());
     }
 
 

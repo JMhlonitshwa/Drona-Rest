@@ -1,0 +1,123 @@
+<html>
+<head>
+<script type="text/javascript" src="jquery-1.9.1.js"></script>
+<!-- <script type="text/javascript" src="jquery.min.js"/></script> -->
+<script>
+var isUseAdded=true;
+$(document).ready(function(){
+	loadAllPerson();
+ 	$.fn.serializeObject = function()
+ 	{
+ 	    var o = {};
+ 	    var a = this.serializeArray();
+ 	    $.each(a, function() {
+ 	        if (o[this.name] !== undefined) {
+ 	            if (!o[this.name].push) {
+ 	                o[this.name] = [o[this.name]];
+ 	            }
+ 	            o[this.name].push(this.value || '');
+ 	        } else {
+ 	            o[this.name] = this.value || '';
+ 	        }
+ 	    });
+ 	    return o;
+ 	};
+
+ 	$(function() {
+ 	    $('#form0').submit(function() {
+ 	    	var data=JSON.stringify($('form').serializeObject());
+ 	        $.ajax({method: "post", url: "person.view", data: JSON.stringify($('form').serializeObject()), contentType: "application/json", success: function(data) {
+ 	        	if(data=="CONFLICT"){
+ 	        		alert("already exist")
+ 	        		
+ 	        	}else{
+ 					$("#table1").append("<tr><td>"+data.fName+" "+data.mName+" "+data.lName+"</td><td><a id='uName' href='#'>"+data.userName+"</a></td><td>"+data.password+"</td></tr>");
+
+ 	        		alert("Done...")
+ 	        	}
+ 	        	} 
+ 	        	});
+ 	        return false;
+ 	    });
+ 	});
+ 	
+ 	function loadAllPerson(){
+ 		if(isUseAdded){
+ 			$.ajax({
+ 			url: 'person.view', 
+ 			type:'GET',		
+
+ 			success: function(data) {
+ 			
+ 			alert("OK");
+ 		
+ 			$("#table1 td").parent().remove();
+ 				$.each(data, function(key, value){ 					
+ 					$("#table1").append("<tr><td>"+value.fName+" "+value.mName+" "+value.lName+"</td><td><a id='uName' href='#'>"+value.userName+"</a></td><td>"+value.password+"</td></tr>");
+ 				});
+ 				$("#table1").show();
+ 			},
+ 			error:		function(data){
+ 			alert("error"+data);
+ 			
+ 			}	
+ 			});
+ 			isUseAdded=false;
+ 		}	
+ 	}
+});
+
+</script>
+<style>
+table, th, td {
+    border: 1px solid black;
+padding:5px;
+    border-collapse: collapse;
+}
+.fake-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>School Management System</title>
+</head>
+<body>
+
+	
+<form method="post" id="form0">
+	<table border="1" align="left">
+	<tr>
+		<td>First Name :</td>
+		<td><input type="text" id="fname" name="fName" /></td>
+	</tr>
+	<tr>
+		<td>Middle Name :</td>
+		<td><input type="text" id="mname" name="mName" /></td>
+	</tr>
+	<tr>
+		<td>Last Name :</td>
+		<td><input type="text" id="lname" name="lName" /></td>
+	</tr>
+	<tr>
+		<td>Username :</td>
+		<td><input type="text" id="username" name="userName" /></td>
+	</tr>
+	<tr>
+		<td>Password :</td>
+		<td><input type="text" id="password" name="password" /></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value="Submit" /> </td>
+	</tr>
+	</table>
+</form>
+	
+	
+	<table id="table1" border="1" style="border :1px solid;padding:0px;cell-spacing:0px" hidden="true" >
+	<tr><th>Name</th><th>UserName</th><th>Password</th></tr>
+	
+	</table>
+</body>
+</html>

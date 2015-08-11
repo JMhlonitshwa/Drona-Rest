@@ -65,9 +65,19 @@ public class UserImpl {
     @Column(name = "USER_LOCALE", length = 1, nullable = false)
     private Integer userLocale;
 
+    @Column(name = "STATUS", length = 1, nullable = false)
+    private int status;
+
     @Embedded
     private AuditData auditData;
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public Long getUserId() {
         return userId;

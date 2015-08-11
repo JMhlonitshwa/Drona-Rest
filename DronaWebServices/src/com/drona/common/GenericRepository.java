@@ -26,11 +26,8 @@ public class GenericRepository {
         return objects.get(0);
     }
 
-    public <E extends Object> List<E> find(String query) throws EnityNotFoundException {
-      List<E> objects = hibernateTemplate.find(query);
-        if (objects.isEmpty()) {
-            throw new EnityNotFoundException();
-        }
+    public <E extends Object> List<E> find(String query) {
+        List<E> objects = hibernateTemplate.find(query);
         return objects;
     }
 
