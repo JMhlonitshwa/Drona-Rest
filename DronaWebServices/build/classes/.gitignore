@@ -1,6 +1,2 @@
-/DbScript.sql
-/appMbean.properties
 /com/
-/hibernate.cfg.xml
-/log4j.properties
-/dbConnection.properties
+/Test/
