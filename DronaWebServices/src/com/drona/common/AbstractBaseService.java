@@ -21,7 +21,7 @@ public class AbstractBaseService {
     protected AuditeJson convertAuditDataTOJAuditJsonData(AuditData auditData) {
         AuditeJson auditJson = new AuditeJson();
         auditJson.setCreatedBy(auditData.getCreatedBy());
-        auditJson.setCreatedDate(CalenderUtil.getDate(auditData.getCreatedDate()));
+        auditJson.setCreatedDate(CalenderUtil.getDateAndTime(auditData.getCreatedDate()));
         if (auditData.getLastModifiedBy() != null) {
             auditJson.setLastModifiedBy(auditData.getLastModifiedBy());
             auditJson.setLastModifiedDate(auditData.getLastModifiedDate().toString());

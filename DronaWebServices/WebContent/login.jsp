@@ -5,33 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login Page</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css"  href="css/style.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-$(document).ready(function(){
-    $('.textBox').each(function(){
-         
-        this.value = $(this).attr('title');
-        $(this).addClass('text-label');
-     
-        $(this).focus(function(){
-            if(this.value == $(this).attr('title')) {
-                this.value = '';
-                $(this).removeClass('text-label');
-            }
-        });
-     
-        $(this).blur(function(){
-            if(this.value == '') {
-                this.value = $(this).attr('title');
-                $(this).addClass('text-label');
-            }
-        });
-    });
-});
-    
-</script>
+<script type="text/javascript" src="js/drona.js"></script>
+
 <style type="text/css">
+body{
+margin: 0;
+font-family: Times New Roman;
+font-size: 14px;
+}
 .myButton {
     -moz-box-shadow: inset 0px 1px 0px -50px #54a3f7;
     -webkit-box-shadow: inset 0px 1px 0px -50px #54a3f7;
@@ -85,6 +68,10 @@ $(document).ready(function(){
 
     <center style="padding: 150pt">
         <table>
+        <tr>
+                <td style="padding-bottom: 13px; color: white; font-size: 20px; font-weight: bolder;">DRONA
+                </td>
+            </tr>
             <tr>
                 <td style="padding-bottom: 13px"><input type="text" title="UserName"
                     name="username" class="textBox" /></td>
@@ -95,7 +82,7 @@ $(document).ready(function(){
             </tr>
             <tr>
                 <td style="padding-bottom: 13px">
-                    <button class="myButton">LOGIN</button>
+                    <button class="myButton" id="login">LOGIN</button>
                 </td>
             </tr>
         </table>

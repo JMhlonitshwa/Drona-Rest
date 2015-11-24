@@ -8,10 +8,13 @@ import javax.persistence.Table;
 
 
 @Entity
+@Table (name="STUDENT")
 public class StudentImpl  extends OrganisationUserImpl {
 @ManyToOne(fetch=FetchType.LAZY)
+@JoinColumn(name="FatherId")
  private UserImpl parent1;
 @ManyToOne(fetch=FetchType.LAZY)
+@JoinColumn(name="MotherId")
 private UserImpl parent2;
 public UserImpl getParent1() {
 	return parent1;

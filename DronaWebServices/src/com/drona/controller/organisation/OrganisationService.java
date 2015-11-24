@@ -60,7 +60,7 @@ public class OrganisationService extends AbstractBaseService {
 
         } else {
             organisation =
-                createOrganistion(orgnaistaionName, OrganisationType.ORGANISATION, parentOrgId);
+                createOrganistion(orgnaistaionName, OrganisationType.ORGANISATION, null);
         }
 
         return organisation.getOrgId();

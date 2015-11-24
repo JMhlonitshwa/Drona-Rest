@@ -1,6 +1,7 @@
 package com.drona.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,10 +18,10 @@ import com.drona.entity.organisation.OrganisationImpl;
 
 @Entity
 @Table(name = "ORGANISATION_USER")
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class OrganisationUserImpl {
 	@Id
-	@Column(name = "ID")
+	@Column(name = "ORGANISATION_USER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
@@ -31,8 +32,13 @@ public class OrganisationUserImpl {
 	@JoinColumn(name = "ORG_ID")
 	private OrganisationImpl organisation;
 
+	@Column(name = "STATUS", length = 1, nullable = false)
+	private int status;
+
 	@Column(name = "ROLE_TYPE_Id", length = 1, nullable = false)
 	private Long roleTypeId;
+	@Embedded
+	private AuditData auditData;
 
 	public OrganisationImpl getOrganisation() {
 		return organisation;

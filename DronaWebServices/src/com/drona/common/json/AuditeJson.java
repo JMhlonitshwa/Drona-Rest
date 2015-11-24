@@ -29,16 +29,16 @@ public class AuditeJson{
     public AuditeJson(long createdBy) {
         super();
         this.createdBy = createdBy;
-        this.createdDate = CalenderUtil.getDate(new GregorianCalendar());
+        this.createdDate = CalenderUtil.getDateAndTime(new GregorianCalendar());
         this.lastModifiedBy = createdBy;
-        this.lastModifiedDate = CalenderUtil.getDate(new GregorianCalendar());
+        this.lastModifiedDate = CalenderUtil.getDateAndTime(new GregorianCalendar());
 
     }
 
     public AuditeJson(long lastModifiedBy, Calendar lastModifiedDate) {
         super();
         this.lastModifiedBy = lastModifiedBy;
-        this.lastModifiedDate = CalenderUtil.getDate(lastModifiedDate);
+        this.lastModifiedDate = CalenderUtil.getDateAndTime(lastModifiedDate);
     }
 
     public long getCreatedBy() {

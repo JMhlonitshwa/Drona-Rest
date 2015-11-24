@@ -12,8 +12,8 @@ import java.util.Calendar;
  */
 public class CalenderUtil {
 
-    public static String getDate(Calendar createdDate) {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    public static String getDateAndTime(Calendar createdDate) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
       
             return format.format(createdDate.getTime());    
       

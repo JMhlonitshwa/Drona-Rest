@@ -43,6 +43,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ejb3-persistence.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-annotations.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-commons-annotations-3.2.0-1.final.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-boot-starter-web-1.1.5.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
@@ -53,5 +54,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx-3.1.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.servlet-3.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jmxremote_optional.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
