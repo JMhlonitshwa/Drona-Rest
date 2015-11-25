@@ -17,7 +17,7 @@ import com.drona.common.StringUtil;
 import com.drona.common.UserRoleType;
 import com.drona.common.exception.EnityNotFoundException;
 import com.drona.common.json.UserJson;
-import com.drona.controller.UserService;
+import com.drona.controller.user.UserService;
 import com.drona.entity.organisation.OrganisationImpl;
 import com.drona.entity.organisation.OrganisationType;
 import com.drona.query.OrganisationQueryImpl;
@@ -79,16 +79,20 @@ public class OrganisationService extends AbstractBaseService {
     }
 
     private OrganisationImpl createOrganistion(String orgName, OrganisationType orgType,
-            String parentorgId) throws EnityNotFoundException {
+            String parentorgId) {
         OrganisationImpl organisation = new OrganisationImpl();
         organisation.setOrgName(orgName);
         if (!StringUtil.isEmptyOrBlank(parentorgId)) {
+        	//Creating  institute
             OrganisationQueryImpl query = new OrganisationQueryImpl();
             query.filterByOrgId(Long.parseLong(parentorgId));
             OrganisationImpl parentOrganisation =
                 (OrganisationImpl) genericRepository.findSingle(query.getQuery());
             organisation.setParentOrganisation(parentOrganisation);
 
+        }else{
+        	//creating organisation
+        	
         }
         return organisation;
 

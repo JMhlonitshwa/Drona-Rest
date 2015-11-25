@@ -40,6 +40,37 @@ public class OrganisationUserImpl {
 	@Embedded
 	private AuditData auditData;
 
+	public OrganisationUserImpl() {
+	}
+
+	public OrganisationUserImpl(Long id, UserImpl userId,
+			OrganisationImpl organisation, int status, Long roleTypeId,
+			AuditData auditData) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.organisation = organisation;
+		this.status = status;
+		this.roleTypeId = roleTypeId;
+		this.auditData = auditData;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public UserImpl getUserId() {
+		return userId;
+	}
+
+	public void setUserId(UserImpl userId) {
+		this.userId = userId;
+	}
+
 	public OrganisationImpl getOrganisation() {
 		return organisation;
 	}
@@ -48,12 +79,28 @@ public class OrganisationUserImpl {
 		this.organisation = organisation;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	public Long getRoleTypeId() {
 		return roleTypeId;
 	}
 
 	public void setRoleTypeId(Long roleTypeId) {
 		this.roleTypeId = roleTypeId;
+	}
+
+	public AuditData getAuditData() {
+		return auditData;
+	}
+
+	public void setAuditData(AuditData auditData) {
+		this.auditData = auditData;
 	}
 
 }

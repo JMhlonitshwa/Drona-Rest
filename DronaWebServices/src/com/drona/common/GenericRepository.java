@@ -15,33 +15,40 @@ import com.drona.common.exception.EnityNotFoundException;
 @Component
 public class GenericRepository {
 
-    @Autowired
-    private HibernateTemplate hibernateTemplate;
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 
-    public <E extends Object> Object findSingle(String query) throws EnityNotFoundException {
-        List<E> objects = hibernateTemplate.find(query);
-        if (objects.isEmpty()) {
-            throw new EnityNotFoundException();
-        }
-        return objects.get(0);
-    }
+	public <E extends Object> Object findSingle(String query)
+			throws EnityNotFoundException {
+		List<E> objects = hibernateTemplate.find(query);
+		if (objects.isEmpty()) {
+			throw new EnityNotFoundException();
+		}
+		return objects.get(0);
+	}
 
-    public <E extends Object> List<E> find(String query) {
-        List<E> objects = hibernateTemplate.find(query);
-        return objects;
-    }
+	public <E extends Object> List<E> find(String query) {
+		List<E> objects = hibernateTemplate.find(query);
+		return objects;
+	}
 
-    public Long save(Object obj) {
-        return (Long) hibernateTemplate.save(obj);
-    }
+	public Long save(Object obj) {
+		return (Long) hibernateTemplate.save(obj);
+	}
 
-    public void update(Object obj) {
-        hibernateTemplate.update(obj);
-    }
+	public void save(List<Object> objs) {
+		hibernateTemplate.saveOrUpdateAll(objs);
+		;
+	}
 
-    public void deleteSingle(String query) throws EnityNotFoundException, DataAccessException {
-        hibernateTemplate.delete(findSingle(query));
+	public void update(Object obj) {
+		hibernateTemplate.update(obj);
+	}
 
-    }
+	public void deleteSingle(String query) throws EnityNotFoundException,
+			DataAccessException {
+		hibernateTemplate.delete(findSingle(query));
+
+	}
 
 }

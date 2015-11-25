@@ -1,7 +1,7 @@
 //============================================================
 //Copyright 2015, Drona, Inc. All rights reserved.
 //============================================================
-package com.drona.controller;
+package com.drona.controller.user;
 
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class UserService {
     public void createUsers(List<UserJson> users, Long orgId) {
         if(users!=null && !users.isEmpty()){
             //create user
+        	
         }
 
     }

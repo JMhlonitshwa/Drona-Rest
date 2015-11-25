@@ -8,81 +8,85 @@ package com.drona.common.json;
  * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Mar 23, 2015
  */
 public class UserJson {
-    private long userId;
-    
-    private String userName;
 
-    private String firstName;
+	private long userId;
 
-    private String emailId;
+	private String userName;
 
-    private String phoneNo;
+	private String firstName;
+	
+	private String lastName;
 
-    private String userLocale;
+	private String emailId;
 
-    private String userRole;   
+	private String phoneNo;
 
-    
-    public long getUserId() {
-        return userId;
-    }
+	private String userLocale;
 
-    
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
+	private String userRole;
 
-    public String getUserName() {
-        return userName;
-    }
+	public long getUserId() {
+		return userId;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public String getEmailId() {
-        return emailId;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getPhoneNo() {
-        return phoneNo;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
+	public String getEmailId() {
+		return emailId;
+	}
 
-    public String getUserLocale() {
-        return userLocale;
-    }
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
 
+	public String getPhoneNo() {
+		return phoneNo;
+	}
 
-    public void setUserLocale(String userLocale) {
-        this.userLocale = userLocale;
-    }
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
 
+	public String getUserLocale() {
+		return userLocale;
+	}
 
-    public String getUserRole() {
-        return userRole;
-    }
+	public void setUserLocale(String userLocale) {
+		this.userLocale = userLocale;
+	}
 
+	public String getUserRole() {
+		return userRole;
+	}
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
-    }
-
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
 
 }

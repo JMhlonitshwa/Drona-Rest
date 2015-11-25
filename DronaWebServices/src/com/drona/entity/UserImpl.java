@@ -64,6 +64,31 @@ public class UserImpl {
 	@Embedded
 	private AuditData auditData;
 
+	public UserImpl() {
+	}
+
+	public UserImpl(Long userId, String username, String password,
+			String firstname, String middlename, String lastname,
+			String gender, String emailId, String phoneno,
+			Integer securityQuetion, String answer, Integer userLocale,
+			int status, AuditData auditData) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.firstname = firstname;
+		this.middlename = middlename;
+		this.lastname = lastname;
+		this.gender = gender;
+		this.emailId = emailId;
+		this.phoneno = phoneno;
+		this.securityQuetion = securityQuetion;
+		this.answer = answer;
+		this.userLocale = userLocale;
+		this.status = status;
+		this.auditData = auditData;
+	}
+
 	public int getStatus() {
 		return status;
 	}

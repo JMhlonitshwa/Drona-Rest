@@ -17,10 +17,10 @@ public class LoginResponse extends JsonResponse {
 
     private long userId;
 
-    private String sessionId;
-    
+    private String sessionId;    
 
     private String token;
+    
     public LoginResponse() {
         super();
     }
