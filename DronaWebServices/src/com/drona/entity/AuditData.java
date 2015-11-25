@@ -4,6 +4,7 @@
 package com.drona.entity;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -46,10 +47,10 @@ public class AuditData {
         super();
     }
 
-    private AuditData(long createdBy, Calendar createdDate) {
-        super();
+    private AuditData(Long createdBy) {
+        super();       
         this.createdBy = createdBy;
-        this.createdDate = createdDate;
+        this.createdDate = GregorianCalendar.getInstance();
      }
 
     public Long getCreatedBy() {
