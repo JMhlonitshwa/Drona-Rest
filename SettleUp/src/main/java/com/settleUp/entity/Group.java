@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Dec 1, 2015
  */
 @Entity
-@Table(name = "Group")
+@Table(name = "Groups_Data")
 public class Group {
 
     @Id

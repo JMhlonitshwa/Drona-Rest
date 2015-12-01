@@ -19,7 +19,7 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String paymentId;
+    private Long  paymentId;
 
     @ManyToOne
     @JoinColumn(name = "payedBy_id")
@@ -35,7 +35,7 @@ public class Payment {
         super();
     }
 
-    public Payment(String paymentId, User payedBy, Long amount, Group groupId) {
+    public Payment(Long paymentId, User payedBy, Long amount, Group groupId) {
         super();
         this.paymentId = paymentId;
         this.payedBy = payedBy;
@@ -44,12 +44,12 @@ public class Payment {
     }
 
 
-    public String getPaymentId() {
+    public Long getPaymentId() {
         return paymentId;
     }
 
 
-    public void setPaymentId(String paymentId) {
+    public void setPaymentId(Long paymentId) {
         this.paymentId = paymentId;
     }
 

@@ -18,6 +18,7 @@ public class PaymentUser {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name="paymentId")
     private Payment paymentId;
 
     @ManyToOne
