@@ -10,22 +10,30 @@ import org.springframework.stereotype.Component;
 
 import com.settleUp.entity.User;
 
+/**
+ * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Dec 1, 2015
+ */
 @Component
 @Transactional
 public class UserService {
-	@Autowired
-	private HibernateTemplate hibernateTemplate;
-	public void save(User user){
-		hibernateTemplate.save(user);
-	}
-	public void saveAll(List<User> users){
-		for (User user : users) {
-			hibernateTemplate.save(user);
-		}		
-	}
-	public List<User> findAll(long groupId){
-		String hql="select users from User users join users.groups g where g.groupId=:groupId";
-		return (List<User>) hibernateTemplate.findByNamedParam(hql, "groupId", groupId);		
-	}
+
+    @Autowired
+    private HibernateTemplate hibernateTemplate;
+
+    public void save(User user) {
+        hibernateTemplate.save(user);
+    }
+
+    public void saveAll(List<User> users) {
+        for (User user : users) {
+            hibernateTemplate.save(user);
+        }
+    }
+
+    public List<User> findAll(long groupId) {
+        String hql = "select users from User users join users.groups g where g.groupId=:groupId";
+        return (List<User>) hibernateTemplate.findByNamedParam(hql, "groupId", groupId);
+    }
+   
 
 }

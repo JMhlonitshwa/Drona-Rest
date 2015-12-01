@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Dec 1, 2015
  */
 @Entity
-@Table(name = "Groups_Data")
+@Table(name = "Groups")
 public class Group {
 
     @Id
@@ -30,7 +30,7 @@ public class Group {
 
     @ManyToMany()
     @JoinTable(name = "User_Group", joinColumns = { @JoinColumn(name = "groupId") }, inverseJoinColumns = { @JoinColumn(name = "emailId") })
-    private List<User> users = new ArrayList<User>();
+     private List<User> users = new ArrayList<User>();
 
     public Group() {
         super();

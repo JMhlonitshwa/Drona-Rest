@@ -16,34 +16,42 @@ import com.settleUp.requestResponse.UserListResponse;
 import com.settleUp.requestResponse.UsersDTO;
 import com.settleUp.service.UserService;
 
+/**
+ * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Dec 1, 2015
+ */
 @Controller
 public class UsersController {
-	@Autowired
-	private UserService userService;
 
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public @ResponseBody UserListResponse getUsers(
-			@RequestParam(value = "groupId", required = true) long groupId) {
-		List<User> users = userService.findAll(groupId);
-		UserListResponse response = new UserListResponse();
-		response.setStaus(HttpStatus.OK);
-		response.setMessage("Successful");
-		response.setGroupId(groupId);
-		if (users != null && !users.isEmpty()) {
-			response.setUsers(convertToUserDTO(users));
-		}
-		return response;
-	}
+    @Autowired
+    private UserService userService;
 
-	private List<UsersDTO> convertToUserDTO(List<User> users) {
-		List<UsersDTO> userDTOs = new ArrayList<UsersDTO>(users.size());
-		for (User user : users) {
-			UsersDTO u = new UsersDTO(user.getName(), user.getEmailId());
-			if (!userDTOs.contains(u)) {
-				userDTOs.add(u);
-			}
-		}
-		return userDTOs;
-	}
+    /**
+     * @param groupId
+     * @return
+     */
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public @ResponseBody UserListResponse getUsers(
+            @RequestParam(value = "groupId", required = true) long groupId) {
+        List<User> users = userService.findAll(groupId);
+        UserListResponse response = new UserListResponse();
+        response.setStaus(HttpStatus.OK);
+        response.setMessage("Successful");
+        response.setGroupId(groupId);
+        if (users != null && !users.isEmpty()) {
+            response.setUsers(convertToUserDTO(users));
+        }
+        return response;
+    }
+
+    private List<UsersDTO> convertToUserDTO(List<User> users) {
+        List<UsersDTO> userDTOs = new ArrayList<UsersDTO>(users.size());
+        for (User user : users) {
+            UsersDTO u = new UsersDTO(user.getName(), user.getEmailId());
+            if (!userDTOs.contains(u)) {
+                userDTOs.add(u);
+            }
+        }
+        return userDTOs;
+    }
 
 }
