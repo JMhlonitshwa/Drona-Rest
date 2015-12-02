@@ -21,7 +21,8 @@ public class UserService {
     private HibernateTemplate hibernateTemplate;
 
     public void save(User user) {
-        hibernateTemplate.save(user);
+        hibernateTemplate.save(user);       
+     
     }
 
     public void saveAll(List<User> users) {

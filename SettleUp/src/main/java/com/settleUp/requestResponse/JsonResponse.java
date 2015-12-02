@@ -2,13 +2,13 @@ package com.settleUp.requestResponse;
 
 import org.springframework.http.HttpStatus;
 
-public class JasonResponse {
+public class JsonResponse {
 private HttpStatus staus;
 private String message;
-public JasonResponse() {
+public JsonResponse() {
 	super();
 }
-public JasonResponse(HttpStatus staus, String message) {
+public JsonResponse(HttpStatus staus, String message) {
 	super();
 	this.staus = staus;
 	this.message = message;

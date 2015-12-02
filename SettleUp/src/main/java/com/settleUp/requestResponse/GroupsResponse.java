@@ -6,7 +6,7 @@ package com.settleUp.requestResponse;
 import java.util.List;
 
 
-public class GroupsResponse extends JasonResponse {
+public class GroupsResponse extends JsonResponse {
     List<GroupsDTO> groups;
 
     public GroupsResponse() {

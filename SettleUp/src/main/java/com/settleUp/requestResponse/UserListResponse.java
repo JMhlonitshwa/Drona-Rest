@@ -3,7 +3,7 @@ package com.settleUp.requestResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserListResponse extends JasonResponse {
+public class UserListResponse extends JsonResponse {
 	private Long groupId;
 	private List<UsersDTO> users = new ArrayList<UsersDTO>();
 
