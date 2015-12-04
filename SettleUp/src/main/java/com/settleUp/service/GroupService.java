@@ -46,10 +46,10 @@ public class GroupService {
      * @return
      * @throws Exception 
      */
-    public GroupsDTO getGroup(long groupId) throws Exception {
+    public GroupsDTO getGroup(long groupId) throws RuntimeException {
         Group group = hibernateTemplate.get(Group.class, groupId);
         if(group==null){
-            throw new Exception("Entity not found for Group id:" + groupId);
+            throw new RuntimeException("Entity not found for Group id:" + groupId);
         }
         return new GroupsDTO(group);
     }

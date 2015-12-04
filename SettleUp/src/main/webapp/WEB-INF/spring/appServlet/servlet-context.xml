@@ -35,10 +35,16 @@
     </bean>
 
     <bean id="jsonConverter"
-        class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes" value="application/json" />
     </bean>   
-    
-    
+    <!-- To handle exception and conversion to json -->
+    <bean id="methodHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jsonConverter"/>				
+			</list>
+		</property>
+	</bean>
     
 </beans>

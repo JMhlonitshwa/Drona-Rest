@@ -4,18 +4,19 @@
 package com.settleUp.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.settleUp.requestResponse.GroupCreateRequest;
 import com.settleUp.requestResponse.GroupsDTO;
@@ -27,7 +28,7 @@ import com.settleUp.service.GroupService;
 /**
  * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Dec 1, 2015
  */
-@Controller
+@RestController
 public class GroupsController {
 
     @Autowired
@@ -42,7 +43,7 @@ public class GroupsController {
     }
 
     @RequestMapping(value = "/groups/{groupId}", method = RequestMethod.GET)
-    public @ResponseBody GroupsResponse getGroupEntity(@PathVariable(value = "groupId") long groupId) throws Exception {
+    public @ResponseBody GroupsResponse getGroupEntity(@PathVariable(value = "groupId") long groupId) throws RuntimeException {
         GroupsDTO group = groupService.getGroup(groupId);
         return buildResponse(Arrays.asList(group));
 
@@ -60,15 +61,7 @@ public class GroupsController {
         return response;
 
     }
-    @ExceptionHandler({Exception.class})
-    public ResponseEntity<JsonResponse>
-     handleException(Exception e) {
-        JsonResponse response = new JsonResponse();
-        response.setStaus(HttpStatus.OK);
-        response.setMessage(e.getMessage());
-
-        return new ResponseEntity<JsonResponse>(response,HttpStatus.OK);
-    }
+   
     private GroupsResponse buildResponse(List<GroupsDTO> groups) {
         GroupsResponse response = new GroupsResponse();
         response.setStaus(HttpStatus.OK);
@@ -78,5 +71,12 @@ public class GroupsController {
         }
         return response;
     }
-
+    @ExceptionHandler({RuntimeException.class})  
+    @ResponseBody
+	    public JsonResponse handleException(Exception e) {
+    JsonResponse response = new JsonResponse();
+    response.setStaus(HttpStatus.OK);
+    response.setMessage(e.getMessage());
+    return response;
+}
 }
