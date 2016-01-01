@@ -6,24 +6,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.settleUp.entity.Group;
 import com.settleUp.entity.User;
+import com.settleUp.requestResponse.JsonResponse;
 import com.settleUp.requestResponse.UserListResponse;
 import com.settleUp.requestResponse.UsersDTO;
+import com.settleUp.service.GroupService;
 import com.settleUp.service.UserService;
 
 /**
  * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Dec 1, 2015
  */
 @Controller
-public class UsersController {
+public class UsersController extends BaseController{
 
     @Autowired
     private UserService userService;
+
 
     /**
      * @param groupId
@@ -41,6 +46,13 @@ public class UsersController {
             response.setUsers(convertToUserDTO(users));
         }
         return response;
+    }
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public @ResponseBody JsonResponse createUser(@RequestBody UserListResponse request){
+    	userService.creatUser(request);
+    	JsonResponse response=new JsonResponse(HttpStatus.OK, "Created successfully");   	
+		return response;
+    	
     }
 
     private List<UsersDTO> convertToUserDTO(List<User> users) {

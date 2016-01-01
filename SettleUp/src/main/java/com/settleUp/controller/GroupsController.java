@@ -4,20 +4,16 @@
 package com.settleUp.controller;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.settleUp.requestResponse.GroupCreateRequest;
 import com.settleUp.requestResponse.GroupsDTO;
 import com.settleUp.requestResponse.GroupsResponse;
@@ -28,9 +24,9 @@ import com.settleUp.service.GroupService;
 /**
  * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Dec 1, 2015
  */
-@RestController
-public class GroupsController {
-
+@Controller
+public class GroupsController extends BaseController{
+//private final Logger logger=Logger.getLogger(GroupsController.class);
     @Autowired
     private GroupService groupService;
 
@@ -71,12 +67,5 @@ public class GroupsController {
         }
         return response;
     }
-    @ExceptionHandler({RuntimeException.class})  
-    @ResponseBody
-	    public JsonResponse handleException(Exception e) {
-    JsonResponse response = new JsonResponse();
-    response.setStaus(HttpStatus.OK);
-    response.setMessage(e.getMessage());
-    return response;
-}
+
 }

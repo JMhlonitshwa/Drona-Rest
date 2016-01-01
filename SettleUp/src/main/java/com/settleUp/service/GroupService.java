@@ -6,11 +6,15 @@ package com.settleUp.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
+
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.settleUp.entity.Group;
 import com.settleUp.entity.User;
@@ -57,6 +61,7 @@ public class GroupService {
     /**
      * @param request
      */
+    @Transactional(readOnly=false,propagation=Propagation.REQUIRED)
     public void createGroup(GroupCreateRequest request) {
         Group group = new Group();
         group.setGroupName(request.getGroupName());
