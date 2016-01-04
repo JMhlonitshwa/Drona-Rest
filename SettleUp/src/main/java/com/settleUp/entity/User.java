@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -22,12 +22,15 @@ import javax.persistence.Table;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
     private String emailId;
 
     private String name;
 
-    @ManyToMany(mappedBy="users")
-     private List<Group> groups = new ArrayList<Group>();
+    @ManyToMany(mappedBy = "users")
+    private List<Group> groups = new ArrayList<Group>();
 
     public User() {
 
@@ -36,6 +39,15 @@ public class User {
     public User(String emailId, String name) {
         this.emailId = emailId;
         this.name = name;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getEmailId() {

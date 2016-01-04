@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,26 +16,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import javax.persistence.UniqueConstraint;
 
 /**
  * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Dec 1, 2015
  */
 @Entity
-@Table(name = "Groups")
+@Table(name = "Groups",uniqueConstraints=@UniqueConstraint(columnNames={"groupName"}))
 public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long groupId;
 
+    @Column(unique=true)
     private String groupName;
 
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "User_Group", joinColumns = { @JoinColumn(name = "groupId") }, inverseJoinColumns = { @JoinColumn(name = "emailId") })
-     private List<User> users = new ArrayList<User>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "User_Group", joinColumns = { @JoinColumn(name = "groupId") }, inverseJoinColumns = { @JoinColumn(name = "userId") })
+    private List<User> users = new ArrayList<User>();
 
     public Group() {
         super();

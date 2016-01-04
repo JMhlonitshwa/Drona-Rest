@@ -17,7 +17,7 @@ public class PaymentUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name="paymentId")
     private Payment paymentId;
 
@@ -27,16 +27,11 @@ public class PaymentUser {
 
     private Long payableAmount;
 
-    public PaymentUser() {
+    public PaymentUser(User payedFor, Long payableAmount,Payment payment) {
         super();
-    }
-
-    public PaymentUser(Long id, Payment paymentId, User payedFor, Long payableAmount) {
-        super();
-        this.id = id;
-        this.paymentId = paymentId;
         this.payedFor = payedFor;
         this.payableAmount = payableAmount;
+        this.paymentId=payment;
     }
 
     public Long getId() {

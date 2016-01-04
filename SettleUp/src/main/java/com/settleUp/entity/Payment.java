@@ -3,23 +3,27 @@
 //============================================================
 package com.settleUp.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
- * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com>
- * Created on Dec 1, 2015
+ * @author Vinayak Mumbai <vinayak.s.mumbai@gmail.com> Created on Dec 1, 2015
  */
 @Entity
 public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long  paymentId;
+    private Long paymentId;
 
     @ManyToOne
     @JoinColumn(name = "payedBy_id")
@@ -30,6 +34,19 @@ public class Payment {
     @ManyToOne
     @JoinColumn(name = "groupId")
     private Group group;
+
+    @OneToMany(mappedBy = "paymentId",cascade=CascadeType.ALL)
+    private List<PaymentUser> payedForUser = new ArrayList<PaymentUser>();
+
+
+    public List<PaymentUser> getPayedForUser() {
+        return payedForUser;
+    }
+
+
+    public void setPayedForUser(List<PaymentUser> payedForUser) {
+        this.payedForUser = payedForUser;
+    }
 
     public Payment() {
         super();
