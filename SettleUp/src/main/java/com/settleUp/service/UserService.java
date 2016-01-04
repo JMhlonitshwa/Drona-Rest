@@ -53,11 +53,17 @@ public class UserService {
 				users.add(u);				
 			}
 			group.setUsers(findAll(request.getGroupId()));
-			group.getUsers().addAll(users);
-			hibernateTemplate.save(group);
+			group.getUsers().addAll(users);			
+			hibernateTemplate.saveOrUpdate(group);
+	
 		}
 		
 	}
+@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW,rollbackFor={Exception.class})
+public void saveGroup(Group group) throws Exception{
+	hibernateTemplate.saveOrUpdate(group);
+	System.out.println("saved or update");
+}
    
 
 }

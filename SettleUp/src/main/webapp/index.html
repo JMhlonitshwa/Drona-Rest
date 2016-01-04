@@ -20,12 +20,12 @@ appModule.controller("groupController", ['$scope','$http',function($scope,$http)
         $scope.status = response.status;
     });	
 	}	
-	$scope.getGroupUsers=function(){
-		alert($scope.groupId)
+	$scope.getGroupUsers=function(){	
 		$http.get("rest/users?groupId="+$scope.groupId).then(
 				function(response) {			
 		        $scope.status = response.status;
 		        $scope.groupUsers = response.data.users;
+		        $scope.show=true;
 		      }, function(response) {
 		        $scope.data = response.data || "Request failed";
 		        $scope.status = response.status;
@@ -33,9 +33,10 @@ appModule.controller("groupController", ['$scope','$http',function($scope,$http)
 	}
 
 $scope.addUser=function(){	
+	//var postData={groupId:$scope.groupId, users:[{name:$scope.newUser.name, email:$scope.newUser.email}]};
 	var postData={groupId:$scope.groupId, users:[$scope.newUser]};
 	alert(postData);
-	$http.post("rest/user",postData).then(function(response){
+	$http.post("rest/users",postData).then(function(response){
 		$scope.groupUsers.push($scope.newUser);
 	},function(response){
 		 $scope.data = response.data || "Request failed";
@@ -55,7 +56,16 @@ Groups  <select ng-model="groupId" ng-change="getGroupUsers()" >
 </select>
 <!-- <button type="button" class="btn btn-info btn-md" ng-click="getGroups()">Get Groups</button> -->
 <br/>
-Search <input type="text" ng-model="search" style="margin:20px"/>
+<ul class="nav nav-tabs" ng-show="show">
+  <li class="active"><a data-toggle="tab" href="#users">Users</a></li>
+  <li><a data-toggle="tab" href="#menu1">Payments</a></li>
+  <li><a data-toggle="tab" href="#menu2">Summary</a></li>
+</ul>
+
+<div class="tab-content" ng-show="show">
+  <div id="users" class="tab-pane fade in active">
+    <h3>Group Users</h3>
+    <p>Search <input type="text" ng-model="search" style="margin:20px"/>
 <table class="table table-striped table-bordered">
     <thead>
       <tr>
@@ -70,8 +80,21 @@ Search <input type="text" ng-model="search" style="margin:20px"/>
       </tr>      
     </tbody>
   </table>
+  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Add User</button>
+  </p>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+    <h3>Menu 1</h3>
+    <p>Some content in menu 1.</p>
+  </div>
+  <div id="menu2" class="tab-pane fade">
+    <h3>Menu 2</h3>
+    <p>Some content in menu 2.</p>
+  </div>
+</div>
+
   
-<button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Add User</button>
+
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -83,7 +106,7 @@ Search <input type="text" ng-model="search" style="margin:20px"/>
         <h4 class="modal-title">Add User</h4>
       </div>
       <div class="modal-body">
-        <p><form role="form" name="newUser">
+        <p><form role="form" >
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="newUser.name">
@@ -92,7 +115,7 @@ Search <input type="text" ng-model="search" style="margin:20px"/>
       <label for="designation">Email</label>
       <input type="text" class="form-control" id="designation" placeholder="Enter Designation" ng-model="newUser.email">
     </div>	 
-   
+   <div>{{newUser}} </div>
   </form></p>
       </div>
       <div class="modal-footer">

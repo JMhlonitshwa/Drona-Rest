@@ -11,12 +11,8 @@
 
     <!-- Root Context: defines shared resources visible to all other web components -->
     <context:annotation-config />
-    <tx:annotation-driven transaction-manager="transactionManager" />
-    <bean id="transactionManager"
-        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
+      <context:component-scan base-package="com.settleUp.service" />
+<context:load-time-weaver/>
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${driverClassName}" />
@@ -55,5 +51,9 @@
             </list>
         </property>
     </bean>
-
+    <bean id="transactionManager"
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+<tx:annotation-driven transaction-manager="transactionManager"   mode="aspectj"/>    
 </beans>

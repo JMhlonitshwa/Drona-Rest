@@ -26,9 +26,8 @@ public class User {
 
     private String name;
 
-    @ManyToMany()
-    @JoinTable(name = "User_Group", joinColumns = { @JoinColumn(name = "emailId") }, inverseJoinColumns = { @JoinColumn(name = "groupId") })
-    private List<Group> groups = new ArrayList<Group>();
+    @ManyToMany(mappedBy="users")
+     private List<Group> groups = new ArrayList<Group>();
 
     public User() {
 

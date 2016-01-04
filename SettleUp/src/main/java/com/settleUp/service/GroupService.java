@@ -61,7 +61,7 @@ public class GroupService {
     /**
      * @param request
      */
-    @Transactional(readOnly=false,propagation=Propagation.REQUIRED)
+    @Transactional(readOnly=false)
     public void createGroup(GroupCreateRequest request) {
         Group group = new Group();
         group.setGroupName(request.getGroupName());
