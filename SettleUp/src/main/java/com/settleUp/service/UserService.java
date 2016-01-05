@@ -2,6 +2,7 @@ package com.settleUp.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -38,6 +39,10 @@ public class UserService {
     public List<User> findAll(long groupId) {
         String hql = "select users from User users join users.groups g where g.groupId=:groupId";
         return (List<User>) hibernateTemplate.findByNamedParam(hql, "groupId", groupId);
+    }
+    public List<User> findAll(Set<Long> userIds) {
+        String hql = "select users from User users users.userId in ("+userIds+")";  
+        return (List<User>) hibernateTemplate.find(hql);
     }
     
 @Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)

@@ -14,6 +14,8 @@ public class PaymentRequest {
     private Long payedBy;
 
     private Long totalAmount;
+    
+    private String note;
 
     List<PaymentUserDTO> paymentUsers = new ArrayList<PaymentUserDTO>();
 
@@ -67,6 +69,14 @@ public class PaymentRequest {
     public void setPaymentUsers(List<PaymentUserDTO> paymentUsers) {
         this.paymentUsers = paymentUsers;
     }
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
 
 
 }

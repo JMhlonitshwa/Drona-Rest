@@ -19,12 +19,12 @@ public class PaymentController extends BaseController {
 
     @Autowired
     private PaymentServices paymentServices;
+    
     @RequestMapping(value = "/payments", method = RequestMethod.GET)
      public @ResponseBody PaymentResponse getPayment(@RequestParam("groupdId") Long groupId){
-         paymentServices.getPayments(groupId);
-        return null;
-    
+      return   paymentServices.getPayments(groupId);     
      }
+    
     @RequestMapping(value = "/payments", method = RequestMethod.POST)
     public @ResponseBody JsonResponse createPayment(@RequestBody PaymentRequest request) {
         paymentServices.createPayment(request);
