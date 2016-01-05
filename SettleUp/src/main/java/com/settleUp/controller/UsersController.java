@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.settleUp.entity.Group;
 import com.settleUp.entity.User;
 import com.settleUp.requestResponse.JsonResponse;
 import com.settleUp.requestResponse.UserListResponse;
 import com.settleUp.requestResponse.UsersDTO;
-import com.settleUp.service.GroupService;
 import com.settleUp.service.UserService;
 
 /**
@@ -58,7 +56,7 @@ public class UsersController extends BaseController{
     private List<UsersDTO> convertToUserDTO(List<User> users) {
         List<UsersDTO> userDTOs = new ArrayList<UsersDTO>(users.size());
         for (User user : users) {
-            UsersDTO u = new UsersDTO(user.getName(), user.getEmailId());
+            UsersDTO u = new UsersDTO(user.getUserId(),user.getName(), user.getEmailId());
             if (!userDTOs.contains(u)) {
                 userDTOs.add(u);
             }

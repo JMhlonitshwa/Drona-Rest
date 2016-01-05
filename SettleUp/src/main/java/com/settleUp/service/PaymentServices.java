@@ -4,13 +4,9 @@
 package com.settleUp.service;
 
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,7 +21,6 @@ import com.settleUp.entity.Group;
 import com.settleUp.entity.Payment;
 import com.settleUp.entity.PaymentUser;
 import com.settleUp.entity.User;
-import com.settleUp.requestResponse.JsonResponse;
 import com.settleUp.requestResponse.PaymentDTO;
 import com.settleUp.requestResponse.PaymentRequest;
 import com.settleUp.requestResponse.PaymentResponse;
@@ -77,8 +72,7 @@ public class PaymentServices {
     	Map<Long,User> usersMap=populateMap(userService.findAll(userIds));    	
     	for (Payment  p : payments) {
     		User u=usersMap.get(p.getPayedBy().getUserId());
-			UsersDTO user=new UsersDTO(u.getName(), u.getEmailId());
-			user.setId(u.getUserId());
+			UsersDTO user=new UsersDTO(u.getUserId(),u.getName(), u.getEmailId());
 			PaymentDTO p_DTO=new PaymentDTO();
 			p_DTO.setAmount(p.getAmount());
 			p_DTO.setNote(p.getNote());			
