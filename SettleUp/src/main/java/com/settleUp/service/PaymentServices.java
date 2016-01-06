@@ -47,7 +47,7 @@ public class PaymentServices {
         payment.setPayedBy(usersMap.get(request.getPayedBy()));
         payment.setNote(request.getNote());
         for (PaymentUserDTO user : request.getPaymentUsers()) {
-            payment.getPayedForUser().add(new PaymentUser(usersMap.get(user.getUserId()), user.getAmount(),payment));
+            payment.getPayedForUser().add(new PaymentUser(usersMap.get(user.getId()), user.getAmount(),payment));
         }
        hibernateTemplate.save(payment);
 
@@ -69,9 +69,9 @@ public class PaymentServices {
     	for (Payment p : payments) {
 			userIds.add(p.getPayedBy().getUserId());
 		}
-    	Map<Long,User> usersMap=populateMap(userService.findAll(userIds));    	
+    //	Map<Long,User> usersMap=populateMap(userService.findAll(userIds));    	
     	for (Payment  p : payments) {
-    		User u=usersMap.get(p.getPayedBy().getUserId());
+    		User u=p.getPayedBy();
 			UsersDTO user=new UsersDTO(u.getUserId(),u.getName(), u.getEmailId());
 			PaymentDTO p_DTO=new PaymentDTO();
 			p_DTO.setAmount(p.getAmount());
@@ -80,6 +80,7 @@ public class PaymentServices {
 			p_DTO.setPaymentId(p.getPaymentId());
 			response.getPayments().add(p_DTO);
 		}
+    	response.setMessage("SucessFull");
     	}else{
     		response.setMessage("no payments are added"); 
     	}

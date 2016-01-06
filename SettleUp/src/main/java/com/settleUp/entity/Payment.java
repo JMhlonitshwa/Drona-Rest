@@ -29,7 +29,7 @@ public class Payment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long paymentId;
 
-	@ManyToOne	
+	@ManyToOne(fetch=FetchType.LAZY)	
 	@JoinColumn(name = "payedBy_id")
 	private User payedBy;
 

@@ -47,11 +47,12 @@ public class UserService {
         for (Long l : userIds) {
             userIdBuilder.append(l);
             i++;
-            if(i<userIds.size()-1) {
+            if(i<=userIds.size()-1) {
                 userIdBuilder.append(',');
             }
         }
         String hql = "select users from User users where users.userId in (" + userIdBuilder + ")";
+        System.out.println("hql:" +hql);
         return (List<User>) hibernateTemplate.find(hql);
     }
 

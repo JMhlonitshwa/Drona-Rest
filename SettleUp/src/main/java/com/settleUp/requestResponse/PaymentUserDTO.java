@@ -6,7 +6,7 @@ package com.settleUp.requestResponse;
 
 public class PaymentUserDTO {
 
-    private Long userId;
+    private Long id;
 
     private Long amount;
 
@@ -14,18 +14,18 @@ public class PaymentUserDTO {
         super();
     }
 
-    public PaymentUserDTO(Long userId, Long amount) {
+    public PaymentUserDTO(Long id, Long amount) {
         super();
-        this.userId = userId;
+        this.id = id;
         this.amount = amount;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getAmount() {
